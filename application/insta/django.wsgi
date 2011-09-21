@@ -1,10 +1,10 @@
 import os
 import sys
 
-sys.path.append('/srv/www/instasaic.com/application/insta')
-sys.path.append('/srv/www/instasaic.com/application/')
+sys.path.append('/srv/www/adayatext.com/application/insta')
+sys.path.append('/srv/www/adayatext.com/application/')
 
-os.environ['PYTHON_EGG_CACHE'] = '/srv/www/instasaic.com/.python-egg'
+os.environ['PYTHON_EGG_CACHE'] = '/srv/www/adayatext.com/.python-egg'
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'insta.settings'
 
