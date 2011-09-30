@@ -1,7 +1,7 @@
 from django.contrib import admin
 from schedule.forms import RuleForm
 
-from schedule.models import Calendar, Event, CalendarRelation, Rule
+from schedule.models import Calendar, Event, CalendarRelation, Rule, Occurrence
 
 class CalendarAdminOptions(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
@@ -13,3 +13,4 @@ class RuleAdmin(admin.ModelAdmin):
 admin.site.register(Calendar, CalendarAdminOptions)
 admin.site.register(Rule, RuleAdmin)
 admin.site.register([Event, CalendarRelation])
+admin.site.register(Occurrence)

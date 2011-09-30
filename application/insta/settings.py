@@ -24,7 +24,7 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/New_York'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -94,8 +94,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
+ 	
 )
-
+INSTALLED_APPS += ("djcelery", )
+CELERY_BACKEND = "database"
+BROKER_HOST = "localhost"
+BROKER_PORT = 5672
+BROKER_USER = "root"
+BROKER_PASSWORD = "chifeo"
+BROKER_VHOST = "myvhost1"
 FIRST_DAY_OF_WEEK = 1 # Monday
 AUTH_PROFILE_MODULE = "profiles.userprofile"
 LOGIN_REDIRECT_URL = '/schedule/calendar/'
@@ -108,3 +115,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'nguyenhdat@gmail.com'
 EMAIL_HOST_PASSWORD = 'dat8Trang'
 EMAIL_PORT = 587
+
+

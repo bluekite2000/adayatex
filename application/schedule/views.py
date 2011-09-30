@@ -121,6 +121,7 @@ def event(request, event_id, template_name="schedule/event.html", extra_context=
         "back_url" : back_url,
     }
     context.update(extra_context)
+    
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 def occurrence(request, event_id,
@@ -396,6 +397,8 @@ def ajax_edit_occurrence_by_code(request):
 
 #TODO permission control
 def ajax_edit_event(request, calendar_slug):
+    #print "event jax_edit_event called!!!"
+
     print request.POST
     try:
         id = request.REQUEST.get('id') # we got occurrence's encoded id or event id
