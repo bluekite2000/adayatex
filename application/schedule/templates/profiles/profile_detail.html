@@ -1,0 +1,21 @@
+{% block body%}
+
+ <div class="tab_container"> 
+        <div id="tab2" class="tab_content"> 	
+
+<ul> 
+<li>Name:{{ profile.user.username}}
+<li>Email:{{ profile.user.email}}
+<li>Phone:{{ profile.phone_number }}
+</ul>
+<div id="navcontainer">
+<ul id="navlist">
+<li id="active"><a href="/profile_edit" id="current">Edit profile</a></li>
+<li id="active"><a href="/calendar/week/example/" id="current">Go back to calendar</a></li>
+
+</ul>
+</div>
+</div>
+</div>
+
+{% endblock %}

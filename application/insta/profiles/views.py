@@ -120,7 +120,7 @@ def create_profile(request, form_class=None, success_url=None,
 create_profile = login_required(create_profile)
 
 def edit_profile(request, username,form_class=None, success_url=None,
-                 template_name='main/edit_profile.html',
+                 template_name='profiles/edit_profile.html',
                  extra_context=None):
     """
     Edit the current user's profile.
@@ -214,7 +214,7 @@ def edit_profile(request, username,form_class=None, success_url=None,
 edit_profile = login_required(edit_profile)
 
 def profile_detail(request, username, public_profile_field=None,
-                   template_name='main/profile_detail.html',
+                   template_name='profiles/profile_detail.html',
                    extra_context=None):
     """
     Detail view of a user's profile.

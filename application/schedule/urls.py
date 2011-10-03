@@ -5,6 +5,9 @@ from schedule.feeds import UpcomingEventsFeed
 from schedule.feeds import CalendarICalendar
 from schedule.periods import Year, Month, Week, Day
 
+from profiles.forms import ProfileForm
+from profiles.views import *
+
 info_dict = {
     'queryset': Calendar.objects.all(),
 }
@@ -117,4 +120,11 @@ url(r'^event_json/$',
     name="event_json"),
 
  url(r'^$', object_list, info_dict, name='schedule'), 
+
+	#PROFILE-profile	
+	url(r'^profile_home/$',profile_home,name='profile_home'),
+	url(r'^(?P<username>\w+)/profiles/detail/$',profile_detail,name='profile_detail'),
+	url(r'^profile_edit/$',profile_edit,name='profile_edit'),	                       
+	url(r'^(?P<username>\w+)/profiles/edit/$',edit_profile,{'form_class': ProfileForm,'success_url':None,}),
+
 )

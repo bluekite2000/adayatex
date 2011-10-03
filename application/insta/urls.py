@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', direct_to_template,{"template":"homepage.html"}),
-    (r'^schedule/', include('schedule.urls')),
+    (r'^', include('schedule.urls')),
     url(r'^account/', include('registration.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'

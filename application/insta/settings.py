@@ -85,7 +85,7 @@ INSTALLED_APPS = (
     'schedule',
     'registration',
     'profiles',
-
+     'south',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -105,7 +105,7 @@ BROKER_PASSWORD = "chifeo"
 BROKER_VHOST = "myvhost1"
 FIRST_DAY_OF_WEEK = 1 # Monday
 AUTH_PROFILE_MODULE = "profiles.userprofile"
-LOGIN_REDIRECT_URL = '/schedule/calendar/week/example/'
+LOGIN_REDIRECT_URL = '/calendar/week/example/'
 LOGIN_URL = '/account/login'
 #LOGIN_REDIRECT_URL = '/profiles/%s/' % user.username
 ACCOUNT_ACTIVATION_DAYS=7

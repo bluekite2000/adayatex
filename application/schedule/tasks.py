@@ -54,9 +54,11 @@ class FullNameTask(PeriodicTask):
                     #print lastoc
                     msg= "occurrence from %s to %s is %s "%(lastoc.start,lastoc.end,lastoc.title)
                     print msg
-                    message = client.sms.messages.create(to="+14154980844",
-                                     from_="+14152266087",
-                                     body=msg)
+                    num=event.creator.get_profile().phone_number
+                    print num
+                    #message = client.sms.messages.create(to="+14154980844",
+                                     #from_="+14152266087",
+                                     #body=msg)
             #this else may not be necessary
             #else:
                 #if not event.occurrence_set.exists(): 

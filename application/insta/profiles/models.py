@@ -14,5 +14,5 @@ class UserProfile(models.Model):
 
    
     phone_number = models.IntegerField(max_length=7,default=8)
-    address = models.CharField(max_length=20,default='Please enter your address')
+    #address = models.CharField(max_length=20,default='Please enter your address')
 

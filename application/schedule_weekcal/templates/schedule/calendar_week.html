@@ -21,7 +21,6 @@
 {% endblock %}
 
 {% block body %}
-
 <div class="navigation">
   <a href="{% url month_calendar calendar.slug %}{% querystring_for_date periods.week.start 2 %}">
     Month
@@ -30,7 +29,7 @@
     Year
   </a>
 </div>
-
+ <p><a  href="/profile_edit/"><span>Add a phone number</span></a></p>
 <div id="week">
 	<div id='calendar'></div>
     <div id="editing_choice_dialog" title="This is a recurring event" style="display:none;">
