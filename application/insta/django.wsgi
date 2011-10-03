@@ -1,5 +1,6 @@
 import os
 import sys
+sys.stdout = sys.stderr
 
 sys.path.append('/srv/www/adayatext.com/application/insta')
 sys.path.append('/srv/www/adayatext.com/application/')
