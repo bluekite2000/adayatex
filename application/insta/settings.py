@@ -113,7 +113,7 @@ ACCOUNT_ACTIVATION_DAYS=7
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'nguyenhdat@gmail.com'
-EMAIL_HOST_PASSWORD = 'dat8Trang'
+EMAIL_HOST_PASSWORD = 'xxxxxxx'
 EMAIL_PORT = 587
 
 
