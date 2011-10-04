@@ -28,8 +28,8 @@ class FullNameTask(PeriodicTask):
     run_every = timedelta(seconds=60)#change this to run every hour
 
     def run(self, **kwargs):
-        twilioaccount = "AC3b08da20f68fc61030d52ab1e115150e"
-        twiliotoken = '2f741ba8d077a89f81d21f16f1494ade'
+        twilioaccount = "xxxxxx"
+        twiliotoken = 'xxxxxx'
         client = TwilioRestClient(twilioaccount,twiliotoken)
         print "task is running"
         logger = self.get_logger(**kwargs)
