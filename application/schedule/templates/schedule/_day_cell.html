@@ -27,12 +27,18 @@
                             <div class="eventdesc">
                                 {% title o.occurrence %}
                             </div>
+							{% options o.occurrence %}
+
                         </div>
                         <div id="{% hash_occurrence o.occurrence %}" style="display:none;">
                           {% detail o.occurrence %}
                         </div>
                 {% endfor %}
-            {% endif %}
+		  {% else %}
+
+	      {% create_event_url calendar day.start %}
+          {% endif %}
+
         </div>
     {% endifnotequal %}
 </td>

@@ -17,7 +17,10 @@ class EventManager(models.Manager):
 
     def get_for_object(self, content_object, distinction=None, inherit=True):
         return EventRelation.objects.get_events_for_object(content_object, distinction, inherit)
-
+ROOM_STATUS = (
+		    ('A','Available'),
+		    ('B','Booked'),
+		)
 class Event(models.Model):
     '''
     This model stores meta data for a date.  You can relate this data to many
@@ -25,7 +28,9 @@ class Event(models.Model):
     '''
     start = models.DateTimeField(_("start"))
     end = models.DateTimeField(_("end"),help_text=_("The end time must be later than the start time."))
-    title = models.CharField(_("title"), max_length = 255)
+    #title = models.CharField(_("title"), max_length = 255)
+    title = models.CharField(_("title"),max_length=1, choices=ROOM_STATUS)
+
     description = models.TextField(_("description"), null = True, blank = True)
     creator = models.ForeignKey(User, null = True, verbose_name=_("creator"))
     created_on = models.DateTimeField(_("created on"), default = datetime.datetime.now)
@@ -76,6 +81,8 @@ class Event(models.Model):
         []
 
         """
+        #import pdb
+        #pdb.set_trace()
         persisted_occurrences = self.occurrence_set.all()
         occ_replacer = OccurrenceReplacer(persisted_occurrences)
         occurrences = self._get_occurrence_list(start, end)
@@ -102,11 +109,15 @@ class Event(models.Model):
             return rrule.rrule(frequency, dtstart=self.start, **params)
 
     def _create_occurrence(self, start, end=None):
+
         if end is None:
             end = start + (self.end - self.start)
-        return Occurrence(event=self,start=start,end=end, original_start=start, original_end=end)
+        obj= Occurrence(event=self,start=start,end=end, original_start=start, original_end=end)
+
+        return obj
 
     def get_occurrence(self, date):
+
         rule = self.get_rrule_object()
         if rule:
             next_occurrence = rule.after(date, inc=True)
@@ -114,6 +125,7 @@ class Event(models.Model):
             next_occurrence = self.start
         if next_occurrence == date:
             try:
+
                 return Occurrence.objects.get(event = self, original_start = date)
             except Occurrence.DoesNotExist:
                 return self._create_occurrence(next_occurrence)
@@ -137,7 +149,9 @@ class Event(models.Model):
         else:
             # check if event is in the period
             if self.start < end and self.end >= start:
-                return [self._create_occurrence(self.start)]
+                new_occ=self._create_occurrence(self.start)
+
+                return [new_occ]
             else:
                 return []
 
@@ -349,8 +363,11 @@ class EventRelation(models.Model):
 
 
 class Occurrence(models.Model):
+
     event = models.ForeignKey(Event, verbose_name=_("event"))
-    title = models.CharField(_("title"), max_length=255, blank=True, null=True)
+    #title = models.CharField(_("title"), max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=1, choices=ROOM_STATUS)
+
     description = models.TextField(_("description"), blank=True, null=True)
     start = models.DateTimeField(_("start"))
     end = models.DateTimeField(_("end"))
@@ -365,8 +382,10 @@ class Occurrence(models.Model):
 
     def __init__(self, *args, **kwargs):
         super(Occurrence, self).__init__(*args, **kwargs)
-        if self.title is None:
+   
+        if not self.title:
             self.title = self.event.title
+
         if self.description is None:
             self.description = self.event.description
 

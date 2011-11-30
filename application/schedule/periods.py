@@ -51,6 +51,8 @@ class Period(object):
                     occurrences.append(occurrence)
             return occurrences
         for event in self.events:
+            #import pdb
+            #pdb.set_trace()
             event_occurrences = event.get_occurrences(self.start, self.end)
             occurrences += event_occurrences
         return sorted(occurrences)
